@@ -1,9 +1,10 @@
+require('dotenv').config();
 const express = require('express');
-const connectDB = require('./db/conn');
+const connectDB = require('./src/db/conn.js');
 const cors = require('cors');
-const leadRouter = require('./routes/leads.routes.js');
+const leadRouter = require('./src/routes/leads.routes.js');
 const mongoose = require('mongoose');
-const Leads = require('./models/leadsModel');
+const Leads = require('./src/models/leadsModel.js');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -46,4 +47,5 @@ connectDB()
   })
   .catch((error) => {
     console.error('Error connecting to the database:', error);
+    process.exit(1); // Exit the process with a failure code
   });
